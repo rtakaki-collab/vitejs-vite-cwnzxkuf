@@ -294,6 +294,14 @@ export default function App() {
       {showModal && <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-xl z-50 flex items-center justify-center p-6"><div className="bg-white w-full max-w-2xl rounded-[3rem] shadow-2xl p-10"><h3 className="font-black text-2xl mb-6">{modalContent.title}</h3><p className="font-bold mb-8">{modalContent.text}</p><button onClick={()=>setShowModal(false)} className="bg-slate-900 text-white px-10 py-4 rounded-2xl font-black w-full">確認</button></div></div>}
       
       {showCompleteModal && <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-xl z-50 flex items-center justify-center p-6 text-center"><div className="bg-white w-full max-w-md rounded-[3rem] shadow-2xl p-10"><CheckCircle2 size={48} className="text-green-500 mx-auto mb-4" /><h3 className="text-2xl font-black mb-6">点検完了</h3><div className="space-y-3"><button onClick={()=>{setShowCompleteModal(false); setInspectItemResults({}); formRef.current?.reset();}} className="w-full bg-indigo-50 text-indigo-600 py-4 rounded-2xl font-black">続けて点検する</button><button onClick={()=>{setShowCompleteModal(false); setInspectItemResults({}); setView('list');}} className="w-full bg-slate-900 text-white py-4 rounded-2xl font-black">一覧へ戻る</button></div></div></div>}
+
+      {/* スマホ用ボトムナビゲーション */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 flex justify-around z-40 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] pb-[env(safe-area-inset-bottom)]">
+        <button onClick={()=>setView('dashboard')} className={`flex flex-col items-center flex-1 py-3 ${view === 'dashboard' ? 'text-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}><LayoutDashboard size={24} /><span className="text-[10px] font-black mt-1">ホーム</span></button>
+        <button onClick={()=>setView('list')} className={`flex flex-col items-center flex-1 py-3 ${view === 'list' ? 'text-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}><ListChecks size={24} /><span className="text-[10px] font-black mt-1">設備点検</span></button>
+        <button onClick={()=>setView('history')} className={`flex flex-col items-center flex-1 py-3 ${view === 'history' ? 'text-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}><History size={24} /><span className="text-[10px] font-black mt-1">履歴</span></button>
+        <button onClick={()=>setView('import')} className={`flex flex-col items-center flex-1 py-3 ${view === 'import' ? 'text-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}><FileUp size={24} /><span className="text-[10px] font-black mt-1">CSV同期</span></button>
+      </div>
     </div>
   );
 }
